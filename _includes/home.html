@@ -1,0 +1,176 @@
+<div class="inner cover" id="faixa">
+
+     <div class="container">
+     <div class="row" id="blocos">
+       
+       <div class="col-sm-6 col-md-4 " >
+          <div class="thumbnail caixa-verde">
+            <img src="img/yoga.jpg" alt="..." class="img-rounded">
+            <div class="caption">
+              
+              <h3>Yoga & Meditação</h3>
+                <p>Somos uma Sociedade Espírita, nascida do Culto do Evangelho no lar...</p>
+              <p><a class="btn btn-success" href="#" role="button" data-toggle="modal" data-target="#materiaYoga">Ver mais &raquo;</a></p>
+            </div>
+          </div>
+      </div>
+
+
+       <div class="col-sm-6 col-md-4 ">
+          <div class="thumbnail caixa-vermelho">
+           <img src="img/filosofia.jpg" alt="..." class="img-rounded">
+            <div class="caption">
+              <h3>Filosofia</h3>
+                <p>Somos uma Sociedade Espírita, nascida do Culto do Evangelho no lar...</p>
+               <p><a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#materiaFilosofia">Ver mais &raquo;</a></p>
+            </div>
+          </div>
+      </div>
+
+       <div class="col-sm-6 col-md-4 ">
+          <div class="thumbnail caixa-azul">
+             <img src="img/espiritualidade.jpg" alt="..." class="img-rounded">
+            <div class="caption">
+               <h3>Espiritualidade</h3>
+                <p>Somos uma Sociedade Espírita, nascida do Culto do Evangelho no lar...</p>
+                <p><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#materiaEspiritualidade">Ver mais &raquo;</a></p>
+            </div>
+          </div>
+      </div>
+
+
+      </div>
+    </div>
+
+    </div>
+
+    </div>
+
+
+    {% include materia-yoga.html %}
+
+    <hr>
+
+<div class="container">
+
+  <div class="row">
+       
+       <div class="col-sm-12 col-md-6 " >
+
+              <div class="panel panel-primary">
+                   <div class="panel-heading">
+                      <h3 class="panel-title">Eventos</h3>
+                   </div>
+
+                    <div class="panel-body">
+
+                         <div class="panel-group" id="eventos">
+                              {% assign countEventos = 1 %}
+                              {% for post in site.categories['eventos'] limit:2 %}
+                              <div class="panel panel-default">
+                                 <div class="panel-heading">
+                                   <h4 class="panel-title">
+                                     <a data-toggle="collapse" data-parent="#eventos" href="#evento{{ countEventos }}">
+                                       {{ post.title }}
+                                     </a>
+                                   </h4>
+                                 </div>
+                                 <div id="evento{{ countEventos }}" class="panel-collapse collapse">
+                                   <div class="panel-body">
+                                     {{ post.content }}
+                                   </div>
+                                 </div>
+                             </div>
+                              {% assign countEventos = countEventos|plus:1 %}
+                             {% endfor %}
+                         </div>
+
+                    </div>
+
+              </div>
+          </div>
+                
+          <div class="col-sm-12 col-md-6 " >
+                <div class="panel panel-primary">
+                     <div class="panel-heading">
+                         <h3 class="panel-title">Palestras</h3>
+                     </div>
+
+                         <div class="panel-body">
+
+
+                              <div class="panel-group" id="palestras">
+                                   
+                                   
+                              {% assign countPalestra = 1 %}
+                              {% for post in site.categories['palestras'] limit:2 %}
+                              <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#palestras" href="#palestra{{ countPalestra }}" data-target="#palestra{{ countPalestra }}">
+                                      {{ post.title }}
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="palestra{{ countPalestra }}" class="panel-collapse collapse">
+                                  <div class="panel-body">
+                                    
+                                    <div class="media">
+                                          <a class="pull-left" href="#">
+                                            <img class="media-object" src="img/avatar1.jpg" alt="...">
+                                          </a>
+                                          <div class="media-body div-resumido"  estado="resumido">
+                                            {{ post.content }}
+                                          </div>
+                                          <div class="btnAbrir"><span class="glyphicon glyphicon-plus"></span> <a href="#!palestra{{ countPalestra }}">Ver mais</a></b></div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                              {% assign countPalestra = countPalestra|plus:1 %}
+                              {% endfor %}
+                              
+                                   
+                                   
+                                  
+                                  
+                                  
+                              </div>
+
+                           
+                         </div>
+                </div>
+          </div>
+
+     </div>
+
+
+ </div>
+
+ <script type="text/javascript">
+
+      $('.btnAbrir').click(function() {
+         
+
+          if ($(this).parents("div").children(".media-body").attr('estado') == 'resumido'){
+              $(this).parents("div").children(".media-body").attr('estado','aberto');
+              $(this).parents("div").children(".btnAbrir").children("a").text('Ver menos');
+              $(this).parents("div").children(".btnAbrir").children("span").removeClass('glyphicon-plus'); 
+              $(this).parents("div").children(".btnAbrir").children("span").addClass('glyphicon-minus'); 
+              $(this).parents("div").children(".media-body").removeClass("div-resumido").addClass("div-aberto"); 
+              return false;
+          } else {
+              
+              $(this).parents("div").children(".media-body").attr('estado','resumido');
+              $(this).parents("div").children(".btnAbrir").children("a").text('Ver mais');
+              $(this).parents("div").children(".btnAbrir").children("span").removeClass('glyphicon-minus'); 
+              $(this).parents("div").children(".btnAbrir").children("span").addClass('glyphicon-plus'); 
+              $(this).parents("div").children(".media-body").removeClass("div-aberto").addClass("div-resumido"); 
+              return false;
+ 
+          }
+
+       });
+
+    </script>

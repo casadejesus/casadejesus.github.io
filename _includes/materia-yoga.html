@@ -1,0 +1,31 @@
+
+
+<!-- Modal -->
+    <div class="modal fade" id="materiaYoga" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+	  
+	  {% for post in site.categories['materia-yoga'] limit:1 %}
+          
+	  <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">{{ post.title }}</h4>
+          </div>
+          
+	  <div class="modal-body">
+            <p>
+	      <b>({{ post.date | date:"%d-%m-%Y" }})</b>
+		 {{ post.content }}
+	    </p>
+          </div>
+	  
+	  {% endfor %}
+	  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
